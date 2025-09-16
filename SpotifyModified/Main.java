@@ -2,9 +2,8 @@
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
-        // to get user input
+        // scanner
         Scanner scanner = new Scanner(System.in);
-
         // create the best bts fan
         User user = new User("Prof. Roy");
 
@@ -40,38 +39,93 @@ public class Main {
             new Song("Butterfly Jazz Version", "BTS", 4.7)
         );
 
-        System.out.println("Welcome to BTS Spotify!");
-        System.out.print("Enter a genre: pop, rock, or jazz: ");
-        String genre = scanner.nextLine().toLowerCase();
+        System.out.println("Welcome to BTS Spotify, " + user.getUsername() + "!");
+        System.out.print("Would you like to see all songs(1), songs by genre(2), or songs by mood(3)? Enter the number: ");
 
-        // to add recommendations
-        List<Song> recommendations = new ArrayList<>();
-
-        switch (genre) {
-            case "pop":
-                recommendations = popSongs;
-                break;
-            case "rock":
-                recommendations = rockSongs;
-                break;
-            case "jazz":
-                recommendations = jazzSongs;
-                break;
-            default:
-                System.out.println("No BTS for you");
-        }
-
-        // if user entered valid genre, show recommendations
-        if (!recommendations.isEmpty()) {
-            System.out.println("Here are some recommended " + genre + " songs:");
-            for (Song song : recommendations) {
-                System.out.println("- " + song.getTitle() + " by " + song.getArtist());
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // consume newline after user input
+        List<Song> allSongs = new ArrayList<>();
+        allSongs.addAll(popSongs);
+        allSongs.addAll(rockSongs);
+        allSongs.addAll(jazzSongs);
+        // giving responses based on the user's input
+        if (choice == 1) {
+            System.out.println("Here are all the songs:");
+            for (Song song : allSongs) {
+                song.displaySongInfo();
             }
+        } else if (choice == 2) {
+            System.out.print("Enter a genre (pop, rock, jazz): ");
+            String genre = scanner.nextLine().toLowerCase();
+            List<Song> recommendations = new ArrayList<>();
+            switch (genre) {
+                case "pop":
+                    recommendations = popSongs;
+                    break;
+                case "rock":
+                    recommendations = rockSongs;
+                    break;
+                case "jazz":
+                    recommendations = jazzSongs;
+                    break;
+                default:
+                    System.out.println("Invalid genre. Showing all songs.");
+                    recommendations = allSongs;
+            }
+
+            // if user entered valid genre, show recommendations
+            if (!recommendations.isEmpty()) {
+                System.out.println("Here are some recommended " + genre + " songs:");
+                for (Song song : recommendations) {
+                    System.out.println("- " + song.getTitle() + " by " + song.getArtist());
+                }
+            }
+            else{
+                System.out.println("Invalid choice. No BTS for you");
+                scanner.close();
+                return;
+            }
+        } else if (choice == 3) {
+            System.out.println("Which mood are you in? (Enter happy, sad, energetic, calm)");
+            String mood = scanner.nextLine().toLowerCase();
+            List<Song> moodSongs = new ArrayList<>();
+            switch (mood) {
+                // adding songs based on mood
+                case "happy":
+                    moodSongs.addAll(Arrays.asList(
+                        new Song("Dynamite", "BTS", 3.0),
+                        new Song("Butter", "BTS", 2.8)));
+                    break;
+                case "sad":
+                    moodSongs.addAll(Arrays.asList(
+                        new Song("Spring Day", "BTS", 2.9),
+                        new Song("Blue & Grey (Jazz Mix)", "BTS", 4.5)));
+                    break;
+                case "energetic":
+                    moodSongs.addAll(Arrays.asList(
+                        new Song("Fake Love Rock Version", "BTS", 5.9),
+                        new Song("War of Hormone Rock Remix", "BTS", 4.2)));
+                    break;
+                case "calm":
+                    moodSongs.addAll(Arrays.asList(
+                        new Song("Singularity", "BTS", 7.0),
+                        new Song("Serendipity Jazz Version", "BTS", 5.0)));
+                    break;
+                default:
+                // if invalid input, exit
+                    System.out.println("Invalid mood. No BTS for you");
+                    scanner.close();
+                    return;
+            }
+            System.out.println("Here are some " + mood + " songs:");
+            for (Song song : moodSongs) {
+                song.displaySongInfo();
+            }       
+        } else {
+            System.out.println("Invalid choice. No BTS for you");
+            scanner.close();
+            return;
         }
-
-        
-
-        scanner.close();
     }
 
 }

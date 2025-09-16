@@ -9,7 +9,10 @@ public class User {
         this.username = username;
         this.playlists = new ArrayList<>();
     }
-
+    // to print username in main.java
+    public String getUsername() {
+        return username;
+    }
     // Create playlist by type
     public Playlist createPlaylist(String name, String type) {
         Playlist playlist = null;
