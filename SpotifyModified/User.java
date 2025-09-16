@@ -1,6 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Methods:
+    createPlaylist(String name, String type): Creates a playlist of a specified type (Pop, Rock, Jazz)
+    deletePlaylist(Playlist playlist): Deletes a specified playlist
+    addSongToPlaylist(Playlist playlist, Song song)
+    removeSongFromPlaylist(Playlist playlist, Song song)
+ */
+
 public class User {
     private String username;
     private List<Playlist> playlists;
@@ -14,27 +22,25 @@ public class User {
         return username;
     }
     // Create playlist by type
-    public Playlist createPlaylist(String name, String type) {
-        Playlist playlist = null;
+    public Playlist createPlaylist(String type) {
+        Playlist newPlaylist;
         switch (type.toLowerCase()) {
-            case "pop":
-                playlist = new PopPlaylist(name);
-                break;
             case "rock":
-                playlist = new RockPlaylist(name);
+                newPlaylist = new RockPlaylist();
                 break;
             case "jazz":
-                playlist = new JazzPlaylist(name);
+                newPlaylist = new JazzPlaylist();
+                break;
+            case "pop":
+                newPlaylist = new PopPlaylist();
                 break;
             default:
-                System.out.println("Unknown playlist type!");
+                System.out.println("Unknown playlist type, couldn't create playlist.");
+                return null;
         }
-
-        if (playlist != null) {
-            playlists.add(playlist);
-            System.out.println(type + " playlist '" + name + "' created.");
-        }
-        return playlist;
+        playlists.add(newPlaylist);
+        System.out.println("Playlist '" + newPlaylist.getName() + "' created.");
+        return newPlaylist;
     }
 
     // delete playlist
