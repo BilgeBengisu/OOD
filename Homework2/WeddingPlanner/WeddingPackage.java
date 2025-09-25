@@ -1,17 +1,15 @@
-public interface WeddingPackage {
+public abstract WeddingPackage {
     private String venue;
     private String catering;
     private String decoration;
     private String photography;
 
-    public WeddingPackage(String venue, String catering, String decoration, String photography) {
-        this.venue = venue;
-        this.catering = catering;
-        this.decoration = decoration;
-        this.photography = photography;
-    }
+    void setVenue();
+    void setCatering();
+    void setDecoration();
+    void setPhotography();
 
-    public String getDetails() {
+    public String displayInfo() {
         return "Venue: " + venue + ", Catering: " + catering + ", Decoration: " + decoration + ", Photography: " + photography;
     }
 }

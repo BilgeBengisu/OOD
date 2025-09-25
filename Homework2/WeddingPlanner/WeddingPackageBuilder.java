@@ -1,29 +1,27 @@
 public class WeddingPackageBuilder {
-    constructor() {
-        this.venue = "";
-        this.catering = "";
-        this.decoration = "";
-        this.photography = "";
+    public WeddingPackageBuilder setWeddingPackage(WeddingPackage weddingPackage) {
+        this.weddingPackage = weddingPackage;
+        return this;
     }
 
-    setVenue(venue) {
-        this.venue = venue;
+    public Builder buildVenue(venue) {
+        weddingPackage.setVenue(venue);
         return this;
     }
-    setCatering(catering) {
-        this.catering = catering;
+    public Builder buildCatering(catering) {
+        weddingPackage.setCatering();
         return this;
     }
-    setDecoration(decoration) {
+    public Builder buildDecoration(decoration) {
         this.decoration = decoration;
         return this;   
     }
-    setPhotography(photography) {
+    public Builder buildPhotography(photography) {
         this.photography = photography;
         return this;
     }
     build() {
-        return new WeddingPackage(this.venue, this.catering, this.decoration, this.photography);
+        return new WeddingPackage(this);
     }
     
 }
