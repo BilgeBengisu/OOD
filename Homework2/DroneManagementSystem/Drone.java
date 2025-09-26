@@ -1,12 +1,13 @@
-public class Drone {
-    private double batteryCapacity = 50;
-    private double flightRange = 20;
-    private double maxSpeed = 50;
+public abstract class Drone {
+    private double batteryCapacity;
+    private double flightRange;
+    private double maxSpeed;
 
-    public Drone(double batteryCapacity, double flightRange, double maxSpeed) {
+    public Drone createDrone(double batteryCapacity, double flightRange, double maxSpeed) {
         this.batteryCapacity = batteryCapacity;
         this.flightRange = flightRange;
         this.maxSpeed = maxSpeed;
+        return this;
     }
 
     public double getBatteryCapacity() {

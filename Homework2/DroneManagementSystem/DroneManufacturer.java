@@ -1,5 +1,5 @@
 public interface DroneManufacturer {
-    // Create different types of drones. Implementations may override or tune attributes.
+    // Create different types of drones. Used by manifacturers
     Drone createDeliveryDrone(double batteryCapacity, double flightRange, double maxSpeed,
                               double payloadCapacity, String deliveryType);
 

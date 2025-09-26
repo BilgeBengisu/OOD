@@ -1,25 +1,29 @@
 public class ManifacturerLongFlightRange implements DroneManufacturer {
-    private double flightRange = 100.0;
 
-    public ManifacturerLongFlightRange(String batteryCapacity, String flightRange, String maxSpeed) {
-        super(batteryCapacity, flightRange, maxSpeed);
-        this.flightRange = flightRange;
-    }
+    private double flightRange;
 
-    public createAgricultureDrone() {
-        AgricultureDrone agricultureDrone = new AgricultureDrone();
+    // ??? creating extra agriculture object ????
+    public Drone createAgricultureDrone(double batteryCapacity, double flightRange, double maxSpeed,
+                                  double cameraResolution, boolean nightVision) {
+        agricultureDrone = super(double batteryCapacity, double flightRange, double maxSpeed,
+                                  double cameraResolution, boolean nightVision);
         agricultureDrone.setFlightRange(this.flightRange);
         return agricultureDrone;
     }
-    public createDeliveryDrone() {
-        DeliveryDrone deliveryDrone = new DeliveryDrone();
+
+    public Drone createDeliveryDrone(double batteryCapacity, double flightRange, double maxSpeed,
+                              double payloadCapacity, String deliveryType) {
+        deliveryDrone = super(double batteryCapacity, double flightRange, double maxSpeed,
+                              double payloadCapacity, String deliveryType);
         deliveryDrone.setFlightRange(this.flightRange);
         return deliveryDrone;
     }
 
-    public createSurveillanceDrone() {
-        SurveillanceDrone surveillanceDrone = new SurveillanceDrone();
-        surveillanceDrone.setFlightRange(this.flightRange);
-        return surveillanceDrone;
+    public createSurveillanceDrone(double batteryCapacity, double flightRange, double maxSpeed,
+                            double cameraResolution, boolean nightVision) {
+        surveillanceDrone = super(double batteryCapacity, double flightRange, double maxSpeed,
+                            double cameraResolution, boolean nightVision);
+        deliveryDrone.setFlightRange(this.flightRange);
+        return deliveryDrone;
     }
 }
