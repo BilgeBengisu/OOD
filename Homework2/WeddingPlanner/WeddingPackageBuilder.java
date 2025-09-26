@@ -1,27 +1,36 @@
 public class WeddingPackageBuilder {
+    private WeddingPackage weddingPackage;
+
+    public WeddingPackageBuilder() {
+    }
+
     public WeddingPackageBuilder setWeddingPackage(WeddingPackage weddingPackage) {
         this.weddingPackage = weddingPackage;
         return this;
     }
 
-    public Builder buildVenue(venue) {
+    public WeddingPackageBuilder buildVenue(String venue) {
         weddingPackage.setVenue(venue);
         return this;
     }
-    public Builder buildCatering(catering) {
-        weddingPackage.setCatering();
+
+    public WeddingPackageBuilder buildCatering(String catering) {
+        weddingPackage.setCatering(catering);
         return this;
     }
-    public Builder buildDecoration(decoration) {
-        this.decoration = decoration;
-        return this;   
-    }
-    public Builder buildPhotography(photography) {
-        this.photography = photography;
+
+    public WeddingPackageBuilder buildDecoration(String decoration) {
+        weddingPackage.setDecoration(decoration);
         return this;
     }
-    build() {
-        return new WeddingPackage(this);
+
+    public WeddingPackageBuilder buildPhotography(String photography) {
+        weddingPackage.setPhotography(photography);
+        return this;
     }
-    
+
+    public WeddingPackage build() {
+        return this.weddingPackage;
+    }
+
 }

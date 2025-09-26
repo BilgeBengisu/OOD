@@ -11,4 +11,8 @@ public class WeddingFactory {
                 throw new IllegalArgumentException("Unknown wedding package type: " + type);
         }
     }
+
+    public WeddingPackage getWeddingPackage(String type) {
+        return createWeddingPackage(type);
+    }
 }
