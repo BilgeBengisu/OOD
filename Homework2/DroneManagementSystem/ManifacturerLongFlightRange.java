@@ -1,29 +1,20 @@
-public class ManifacturerLongFlightRange implements DroneManufacturer {
+public class ManifacturerLongFlightRange implements DroneFactory {
 
-    private double flightRange;
-
-    // ??? creating extra agriculture object ????
-    public Drone createAgricultureDrone(double batteryCapacity, double flightRange, double maxSpeed,
-                                  double cameraResolution, boolean nightVision) {
-        agricultureDrone = super(double batteryCapacity, double flightRange, double maxSpeed,
-                                  double cameraResolution, boolean nightVision);
-        agricultureDrone.setFlightRange(this.flightRange);
-        return agricultureDrone;
+    @Override
+    public Drone createSurveillanceDrone(double batteryCapacity, double flightRange, double maxSpeed, String specialFeature) {
+        return new SurveillanceDrone(specialFeature)
+                .createDrone(battery, flightRange, maxSpeed); 
     }
 
-    public Drone createDeliveryDrone(double batteryCapacity, double flightRange, double maxSpeed,
-                              double payloadCapacity, String deliveryType) {
-        deliveryDrone = super(double batteryCapacity, double flightRange, double maxSpeed,
-                              double payloadCapacity, String deliveryType);
-        deliveryDrone.setFlightRange(this.flightRange);
-        return deliveryDrone;
+    @Override
+    public Drone createDeliveryDrone(double batteryCapacity, double flightRange, double maxSpeed, String specialFeature) {
+        return new SurveillanceDrone(specialFeature)
+                .createDrone(battery, flightRange, maxSpeed); 
     }
 
-    public createSurveillanceDrone(double batteryCapacity, double flightRange, double maxSpeed,
-                            double cameraResolution, boolean nightVision) {
-        surveillanceDrone = super(double batteryCapacity, double flightRange, double maxSpeed,
-                            double cameraResolution, boolean nightVision);
-        deliveryDrone.setFlightRange(this.flightRange);
-        return deliveryDrone;
+    @Override
+    public createAgricultureDrone(double batteryCapacity, double flightRange, double maxSpeed, String specialFeature) {
+        return new AgricultureDrone(specialFeature)
+                .createDrone(battery, flightRange, maxSpeed); 
     }
 }

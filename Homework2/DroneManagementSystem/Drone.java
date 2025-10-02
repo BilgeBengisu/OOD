@@ -1,13 +1,13 @@
 public abstract class Drone {
-    private double batteryCapacity;
-    private double flightRange;
-    private double maxSpeed;
+    protected double batteryCapacity;
+    protected double flightRange;
+    protected double maxSpeed;
+    protected String specialFeature;
 
-    public Drone createDrone(double batteryCapacity, double flightRange, double maxSpeed) {
+    public Drone(double batteryCapacity, double flightRange, double maxSpeed) {
         this.batteryCapacity = batteryCapacity;
         this.flightRange = flightRange;
         this.maxSpeed = maxSpeed;
-        return this;
     }
 
     public double getBatteryCapacity() {
