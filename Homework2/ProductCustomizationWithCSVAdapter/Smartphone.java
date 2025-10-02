@@ -1,13 +1,8 @@
-public class Smartphone implements Product {
-    private double screenSize;
-    private double battery;
-    private String camera;
-    private double storage;
+import java.util.Map;
+import java.util.HashMap;
 
-    public Smartphone(String screenSize, String battery, String camera, String storage) {
-        this.screenSize = screenSize;
-        this.battery = battery;
-        this.camera = camera;
-        this.storage = storage;
+public class Smartphone extends Product {
+    public Smartphone() {
+        this.setType("Smartphone");
     }
 }

@@ -1,32 +1,34 @@
+// Builder for Smartphone
+// price is fixed for custom products
+// specs and name is handled with setAttribute function
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class SmartphoneBuilder implements ProductBuilder {
-    private String screenSize =null;
-    private String battery = null;
-    private String camera = null;
-    private String storage = null;
+    private Product product;
+
+    public SmartPhoneBuilder() {
+        product = new Smartphone();
+        product.setPrice(800); // fixed price for customized products
+        if (this.smartphone.getSpecs() == null) {
+            this.smartphone.setSpecs(new HashMap<>());
+        }
+    }
 
     @Override
     public ProductBuilder setAttribute(String key, String value) {
-        switch (key.toLowerCase()) {
-            case "screensize":
-                this.screenSize = value;
-                break;
-            case "battery":
-                this.battery = value;
-                break;
-            case "camera":
-                this.camera = value;
-                break;
-            case "storage":
-                this.storage = value;
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown attribute: " + key);
+        if (key.equalsIgnoreCase("ProductName")) {
+            smartphone.setName(value);
+        }
+        else {
+            product.getSpecs().put(key, value);
         }
         return this;
     }
 
     @Override
     public Product build() {
-        return new Smartphone(screenSize, battery, camera, storage);
+        return product;
     }
 }

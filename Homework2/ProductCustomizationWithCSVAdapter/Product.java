@@ -4,14 +4,7 @@ public class Product {
     private String name;
     private String type;
     private Map<String, String> specs;
-    private double price = 800;
-
-    public Product(String name, String type, Map<String, String> specs, double price) {
-        this.name = name;
-        this.type = type;
-        this.specs = specs;
-        this.price = price;
-    }
+    private double price;
 
     // getters and setters
     public String getName() {
