@@ -1,3 +1,7 @@
+/*
+ * default Destination Wedding Package
+ */
+
 public class DestinationWeddingPackage extends WeddingPackage {
     public DestinationWeddingPackage() {
         setVenue("Beach Resort");

@@ -1,3 +1,7 @@
+/*
+ * default Traditional Wedding Package
+ */
+
 public class TraditionalWeddingPackage extends WeddingPackage {
     public TraditionalWeddingPackage() {
         setVenue("Country Club");

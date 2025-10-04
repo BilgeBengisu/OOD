@@ -1,3 +1,8 @@
+/*
+ * Wedding Package abstract class which is the blueprint for 
+ * different kinds of Wedding Packages
+ */
+
 public abstract class WeddingPackage {
     private String venue;
     private String catering;

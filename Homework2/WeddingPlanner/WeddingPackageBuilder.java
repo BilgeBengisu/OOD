@@ -1,3 +1,8 @@
+/*
+ * Wedding Package Builder 
+ * creates Wedding Package with customizations
+ */
+
 public class WeddingPackageBuilder {
     private WeddingPackage weddingPackage;
 

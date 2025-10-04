@@ -1,3 +1,7 @@
+/*
+ * default Luxury Wedding Package
+ */
+
 public class LuxuryWeddingPackage extends WeddingPackage {
     public LuxuryWeddingPackage() {
         setVenue("Grand Palace");
