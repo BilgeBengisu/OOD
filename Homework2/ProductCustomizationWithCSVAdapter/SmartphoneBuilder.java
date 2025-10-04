@@ -8,7 +8,7 @@ import java.util.Map;
 public class SmartphoneBuilder implements ProductBuilder {
     private Product product;
 
-    public SmartPhoneBuilder() {
+    public SmartphoneBuilder SmartphoneBuilder() {
         product = new Smartphone();
         product.setPrice(800); // fixed price for customized products
         if (this.smartphone.getSpecs() == null) {

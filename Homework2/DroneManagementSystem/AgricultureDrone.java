@@ -1,15 +1,8 @@
 public class AgricultureDrone extends Drone {
-    private boolean spray;
-    private double coverageArea;
-
-    public AgricultureDrone createDrone(double batteryCapacity, double flightRange, double maxSpeed,
-                             String specialFeature) {
+    public AgricultureDrone(double batteryCapacity, double flightRange, double maxSpeed, String specialFeature) {
         super(batteryCapacity, flightRange, maxSpeed);
-        this.specialFeature;
+        this.specialFeature = specialFeature;
     }
-
-    public boolean isSpray() { return spray; }
-    public double getCoverageArea() { return coverageArea; }
 
     @Override
     public void displaySpecs() {

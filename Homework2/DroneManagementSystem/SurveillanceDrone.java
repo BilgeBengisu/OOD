@@ -1,15 +1,9 @@
 public class SurveillanceDrone extends Drone {
-    private double cameraResolution;
-    private boolean nightVision;
-
     public SurveillanceDrone(double batteryCapacity, double flightRange, double maxSpeed,
                              String specialFeature) {
         super(batteryCapacity, flightRange, maxSpeed);
         this.specialFeature = specialFeature;
     }
-
-    public double getCameraResolution() { return cameraResolution; }
-    public boolean hasNightVision() { return nightVision; }
 
     @Override
     public void displaySpecs() {

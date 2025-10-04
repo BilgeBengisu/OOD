@@ -1,13 +1,9 @@
 public class DeliveryDrone extends Drone {
-
     public DeliveryDrone(double batteryCapacity, double flightRange, double maxSpeed,
                          String specialFeature) {
-        super(batteryCapacity, flightRange, maxSpeed, specialFeature);
+        super(batteryCapacity, flightRange, maxSpeed);
         this.specialFeature = specialFeature;
     }
-
-    public double getPayloadCapacity() { return payloadCapacity; }
-    public String getDeliveryType() { return deliveryType; }
 
     @Override
     public void displaySpecs() {

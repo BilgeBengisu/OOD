@@ -33,4 +33,7 @@ public abstract class Drone {
     public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
+
+    // Provide an abstract method so subclasses can implement their own specs display
+    public abstract void displaySpecs();
 }

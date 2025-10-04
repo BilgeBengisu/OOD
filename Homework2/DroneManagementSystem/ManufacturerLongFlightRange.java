@@ -1,4 +1,4 @@
-public class ManufacturerHighBattery implements DroneFactory {
+public class ManufacturerLongFlightRange implements DroneFactory {
 
     @Override
     public Drone createSurveillanceDrone(double batteryCapacity, double flightRange, double maxSpeed, String specialFeature) {

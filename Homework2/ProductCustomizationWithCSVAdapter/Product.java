@@ -1,12 +1,13 @@
 // parent class for products
-
+import java.util.Map;
+import java.util.HashMap;
 public class Product {
     private String name;
     private String type;
     private Map<String, String> specs;
     private double price;
 
-    // getters and setters
+    // getters
     public String getName() {
         return name;
     }

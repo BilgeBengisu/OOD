@@ -1,6 +1,9 @@
+import java.util.Map;
+import java.util.HashMap;
+
 public class CSVAdapter {
     public Product toProduct(String csvLine) {
-        
+
         String[] fields = csvLine.split("\t");
 
         String productName = fields[0];

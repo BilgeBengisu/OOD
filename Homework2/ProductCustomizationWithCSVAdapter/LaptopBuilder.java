@@ -8,8 +8,8 @@ import java.util.Map;
 public class LaptopBuilder implements ProductBuilder {
     private Product product;
 
-    public SmartPhoneBuilder() {
-        product = new Smartphone();
+    public LaptopBuilder() {
+        product = new Laptop();
         product.setPrice(800); // fixed price for customized products
         if (this.smartphone.getSpecs() == null) {
             this.smartphone.setSpecs(new HashMap<>());
