@@ -3,6 +3,24 @@ public class TestWeddingPlanner {
         WeddingPlanner planner = WeddingPlanner.getInstance();
         
         WeddingPackageBuilder builder = new WeddingPackageBuilder();
+        WeddingFactory weddingFactoryExample = new WeddingFactory();
+        WeddingPackage luxuryCustom = weddingFactoryExample.getWeddingPackage("Luxury");
+        builder.setWeddingPackage(luxuryCustom)
+            .buildVenue("Beach")
+            .buildCatering("Gourmet")
+            .buildDecoration("No Flowers")
+            .buildPhotography("Local Photography");
+
+        builder.build();
+        System.out.println(luxuryCustom.displayInfo());
+
+        WeddingPlanner secondInstance = WeddingPlanner.getInstance();
+        if (planner == secondInstance) {
+            System.out.println("Singleton works, both variables contain the same instance.");
+        } else {
+            System.out.println("Singleton failed, variables contain different instances.");
+        }
+
 
         System.out.println("Planning Default Luxury Wedding");
         WeddingFactory weddingFactory = new WeddingFactory();

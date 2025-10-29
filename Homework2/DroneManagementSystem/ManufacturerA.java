@@ -1,4 +1,4 @@
-public class ManufacturerHighSpeed implements DroneFactory {
+public class ManufacturerA implements DroneFactory {
 
     @Override
     public Drone createSurveillanceDrone(double batteryCapacity, double flightRange, double maxSpeed, String specialFeature) {
@@ -13,5 +13,10 @@ public class ManufacturerHighSpeed implements DroneFactory {
     @Override
     public Drone createAgriculturalDrone(double batteryCapacity, double flightRange, double maxSpeed, String specialFeature) {
         return new AgricultureDrone(batteryCapacity, flightRange, maxSpeed, specialFeature);
+    }
+
+    @Override
+    public Drone createRescueDrone(double batteryCapacity, double flightRange, double maxSpeed, String specialFeature) {
+        return new RescueDrone(batteryCapacity, flightRange, maxSpeed, specialFeature);
     }
 }
