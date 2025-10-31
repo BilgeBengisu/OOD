@@ -9,7 +9,6 @@ abstract class HurricanePredictionTemplate {
 
     // Steps to be implemented by subclasses
     abstract void fetchData();
-    abstract void preprocessData();
     abstract void applyPredictionModel();
     abstract void postprocessResults();
 

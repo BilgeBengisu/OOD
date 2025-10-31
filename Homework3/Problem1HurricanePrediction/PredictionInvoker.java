@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 /*
  * Create a PredictionInvoker class to manage and execute tasks in the correct order. This class will:
  * Allow commands (representing each task) to be added to a list using addCommand().
@@ -6,7 +9,7 @@
 */
 
 public class PredictionInvoker {
-    private List<Command> commands;
+    private List<Command> commands = new ArrayList<>();
 
     public void addCommand(Command command) {
         commands.add(command);
@@ -15,6 +18,6 @@ public class PredictionInvoker {
     public void executeCommands() {
         for ( Command command : commands ) {
             command.execute();
-        } 
+        }
     }
 }

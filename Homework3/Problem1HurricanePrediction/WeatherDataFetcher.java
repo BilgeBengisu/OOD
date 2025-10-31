@@ -1,5 +1,5 @@
 public class WeatherDataFetcher {
-    public fetchData() {
-        System.out.println("Weatching latest hurricane data...");
+    public void fetchData() {
+        System.out.println("Fetching weather data...");
     }
 }
