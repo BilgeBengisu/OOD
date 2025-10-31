@@ -8,7 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RegistrationForm extends JFrame {
-    public RegistrationForm() {
+    private final Validator validatorChain;
+
+    public RegistrationForm(Validator validatorChain) {
+        this.validatorChain = validatorChain;
+
         // Create the main frame
         JFrame frame = new JFrame("Registration Form");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,12 +61,21 @@ public class RegistrationForm extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = userField.getText();
-                String password = new String(passField.getPassword());
-                String email = emailField.getText();
-                String phoneNumber = phoneNumberField.getText();
+                UserRegistration user = new UserRegistration(
+                    userField.getText(),
+                    new String(passField.getPassword()),
+                    emailField.getText(),
+                    phoneNumberField.getText()
+                );
+
+                String result = validatorChain.validate(user);
                 
                 // validate credentials
+                if (result == null) {
+                    JOptionPane.showMessageDialog(frame, "Registration successful!");
+                } else {
+                    JOptionPane.showMessageDialog(frame, result, "Validation Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -79,16 +92,5 @@ public class RegistrationForm extends JFrame {
         frame.add(panel, BorderLayout.CENTER);
 
         frame.setVisible(true);
-    }
-
-
-    public static void main(String[] args) {
-        // test
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new RegistrationForm();
-            }
-        });
     }
 }
