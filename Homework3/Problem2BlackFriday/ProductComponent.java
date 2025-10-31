@@ -1,5 +1,6 @@
-public interface ProductComponent {
+abstract class ProductComponent {
 
-    public String getName();
-    public double getPrice();
+    abstract String getName();
+    abstract double getPrice();
+    abstract void display();
 }  
