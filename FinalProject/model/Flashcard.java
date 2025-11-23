@@ -26,7 +26,8 @@ public class Flashcard {
     }
 
     // overriding toString to display flashcard information
-    @Override String toString() {
+    @Override
+    public String toString() {
         return front + " --> " + back + " (" + language + ")";
     }
 }

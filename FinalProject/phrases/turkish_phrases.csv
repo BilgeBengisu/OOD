@@ -1,14 +1,14 @@
-difficulty, phrase,translation
-easy, "Kolay Gelsin!"", "(kol-eye gel-sin) With this phrase you can walk up and start talking to anyone. It literally means “may your work come easily.” But it is an unofficial way to start a conversation.""
-easy, "Merhaba", "Hello(mare-aba) This is the basic way to say hello"
-easy, "Günaydın", "Good morning(goon-eye-din) Obviously this a way to greet a Turkish speaking person in the morning."
-easy, "Güle güle", "Go smilingly(goo-lay goo-lay) This phrase literally means may you go with a smile on your face. It is only said when the other party is leaving and you are staying. If you are leaving and the other party is staying, use the previous phrase"
-easy, "Hoşça Kal", "Stay well(hosh-cha-call) This is one of the things you can say at the end of a conversation right before you leave."
-easy, "- Hoş geldin! + Hoş buldum", " - Welcome(hosh-gel-din) + I found it pleasant(hosh-bul-dum) This is a common exchange when you arrive somewhere. The host says the first phrase and the guest responds with the second phrase."
-medium, "Geçmiş olsun", "May it be in the past(getch-mish ol-soon) You say this to a person who is sick or is suffering some ailment. It literally means “may it be in the past.”"
-medium, "Yolun açık olsun", "May your road be open(yoll-oon atch-ick ol-soon) You can say this to someone before they depart on a journey or trip of some kind."
-medium, "Gözünüz aydın", May your eyes be full of light(gooz-oo-nooz eye-din) You say this when someone has just had a baby."
-medium, "Memleket nere?", "Where is your hometown(mem-lek-et ne-reh) This is a common question asked when you meet someone new."
-medium, "Afiyet olsun", "May it be for your benefit(ah-fee-yet ol-soon) This is said before a meal to wish the diners a good meal."
-easy, "Eline sağlık", "Health to your hand(eh-lee-neh sah-luk) This is said to someone who has prepared food for you to thank them for their effort."
-hard, "Sensiz boğazımdan geçmedi", "It didn't go down my throat without you(sen-seez bog-az-um-dan getch-meh-dee) This is a romantic phrase that literally means that food or drink did not go down your throat without the presence of the other person."
+phrase,translation,difficulty
+"Kolay Gelsin!"", (kol-eye gel-sin) With this phrase you can walk up and start talking to anyone. It literally means “may your work come easily.” But it is an unofficial way to start a conversation.""""",easy
+Merhaba,Hello(mare-aba) This is the basic way to say hello,easy
+Günaydın,Good morning(goon-eye-din) Obviously this a way to greet a Turkish speaking person in the morning.,easy
+Güle güle,"Go smilingly(goo-lay goo-lay) This phrase literally means may you go with a smile on your face. It is only said when the other party is leaving and you are staying. If you are leaving and the other party is staying, use the previous phrase",easy
+Hoşça Kal,Stay well(hosh-cha-call) This is one of the things you can say at the end of a conversation right before you leave.,easy
+- Hoş geldin! + Hoş buldum, - Welcome(hosh-gel-din) + I found it pleasant(hosh-bul-dum) This is a common exchange when you arrive somewhere. The host says the first phrase and the guest responds with the second phrase.,easy
+Geçmiş olsun,May it be in the past(getch-mish ol-soon) You say this to a person who is sick or is suffering some ailment. It literally means “may it be in the past.”,medium
+Yolun açık olsun,May your road be open(yoll-oon atch-ick ol-soon) You can say this to someone before they depart on a journey or trip of some kind.,medium
+Gözünüz aydın,"May your eyes be full of light(gooz-oo-nooz eye-din) You say this when someone has just had a baby.""",medium
+Memleket nere?,Where is your hometown(mem-lek-et ne-reh) This is a common question asked when you meet someone new.,medium
+Afiyet olsun,May it be for your benefit(ah-fee-yet ol-soon) This is said before a meal to wish the diners a good meal.,medium
+Eline sağlık,Health to your hand(eh-lee-neh sah-luk) This is said to someone who has prepared food for you to thank them for their effort.,easy
+Sensiz boğazımdan geçmedi,It didn't go down my throat without you(sen-seez bog-az-um-dan getch-meh-dee) This is a romantic phrase that literally means that food or drink did not go down your throat without the presence of the other person.,hard

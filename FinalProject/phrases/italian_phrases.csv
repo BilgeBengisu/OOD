@@ -1,11 +1,11 @@
-difficulty, phrase,translation
-easy, "Non ne ho idea", "I have no idea",
-medium, "Mi è sfuggito di mente", "It slipped my mind",
-medium, "Sfondi una porta aperta", "You break an open door.(I aggree a with you)",
-medium, "Non sto più nella pelle", "I'm out of my skin (I can't wait!)",
-medium, "L'hai presa sotto gamba", "You took it lightly. (You underestimated it)",
-medium, "Mi scoppia la testa", "My head is exploding. (I have a strong headache)",
-medium, "Ho divorato il libro", "I devoured the book(read it very quickly",
-medium, "Non sono in vena di", "I'm not in the mood for...",
-easy, "Non ci piove!", "It's not raining. (That's for sure)",
-medium, "Non sta né in cielo né in terra!", "It is neither in heavon nor in hell. (That's absurd)" 
+phrase,translation,difficulty
+Non ne ho idea,I have no idea,,easy
+Mi è sfuggito di mente,It slipped my mind,,medium
+Sfondi una porta aperta,You break an open door.(I aggree a with you),,medium
+Non sto più nella pelle,I'm out of my skin (I can't wait!),,medium
+L'hai presa sotto gamba,You took it lightly. (You underestimated it),,medium
+Mi scoppia la testa,My head is exploding. (I have a strong headache),,medium
+Ho divorato il libro,I devoured the book(read it very quickly,,medium
+Non sono in vena di,I'm not in the mood for...,,medium
+Non ci piove!,It's not raining. (That's for sure),,easy
+Non sta né in cielo né in terra!,It is neither in heavon nor in hell. (That's absurd) ,medium
