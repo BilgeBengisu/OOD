@@ -15,6 +15,7 @@ public class FlashcardUI {
     private JLabel phraseLabel;
     private JButton showAnswerButton;
     private JButton nextButton;
+    private JButton languageMenuButton;
 
     private List<Flashcard> cards;
     private int currentIndex = 0;
@@ -86,10 +87,13 @@ public class FlashcardUI {
 
         showAnswerButton = new JButton("Show Answer");
         nextButton = new JButton("Next");
+        // return to language menu
+        languageMenuButton = new JButton("Return to Language Menu");
 
         // show answer if the user clicks the button
         showAnswerButton.addActionListener(this::handleShowAnswer);
         nextButton.addActionListener(this::handleNextCard);
+        languageMenuButton.addActionListener(e -> showLanguageMenu());
 
         // add buttons to a panel
         JPanel buttonPanel = new JPanel();
@@ -99,6 +103,7 @@ public class FlashcardUI {
         // add phrase and buttons to the interface
         cardPanel.add(phraseLabel, BorderLayout.CENTER);
         cardPanel.add(buttonPanel, BorderLayout.SOUTH);
+        cardPanel.add(languageMenuButton, BorderLayout.PAGE_START);
 
         frame.setContentPane(cardPanel);
         frame.revalidate();
