@@ -49,9 +49,15 @@ public class FlashcardUI {
         title.setFont(new Font("Arial", Font.BOLD, 18));
         mainPanel.add(title);
 
-        JButton turkishBtn = new JButton("Turkish");
-        JButton portugueseBtn = new JButton("Portuguese");
-        JButton italianBtn = new JButton("Italian");
+        JButton turkishBtn = new JButton("<html><center>Türkçe 🇹🇷</center></html>");
+        JButton portugueseBtn = new JButton("<html><center>Português 🇧🇷</center></html>");
+        JButton italianBtn = new JButton("<html><center>Italiano 🇮🇹</center></html>");
+
+        // Set larger font for better emoji rendering
+        Font buttonFont = new Font("Arial", Font.BOLD, 16);
+        turkishBtn.setFont(buttonFont);
+        portugueseBtn.setFont(buttonFont);
+        italianBtn.setFont(buttonFont);
 
         // add action listeners to initiate the corresponding language strategy
         turkishBtn.addActionListener(e -> startSession(new TurkishStrategy()));
