@@ -1,3 +1,6 @@
+package ui;
+import java.awt.Color;
+
 /*
     @author: Bilge Akyol 
     implementing color theme to match flag colors for each Language Strategy

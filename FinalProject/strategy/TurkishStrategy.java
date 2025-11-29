@@ -4,6 +4,8 @@ import loader.CSVLoader;
 import model.Deck;
 import model.Language;
 import ui.ColorTheme;
+import java.awt.Color;
+
 
 /*
     @author: Bilge Akyol 
@@ -16,7 +18,11 @@ public class TurkishStrategy implements LanguageSelectionStrategy {
     }
 
     @Override
-    public void getColorTheme(){
-
+    public ColorTheme getColorTheme(){
+        return new ColorTheme(
+            Color.WHITE, // background
+            Color.RED, // button
+            Color.BLACK // text
+        );
     }
 }
