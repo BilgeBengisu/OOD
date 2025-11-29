@@ -9,6 +9,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
+/*
+    @author: Bilge Akyol 
+**/
+
 public class FlashcardUI {
     private JFrame frame;
     private JPanel mainPanel;

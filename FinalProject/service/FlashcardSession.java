@@ -7,6 +7,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+    @author: Bilge Akyol 
+**/
+
 public class FlashcardSession {
 
     private Deck deck;

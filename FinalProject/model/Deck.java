@@ -3,6 +3,10 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 
+/*
+    @author: Bilge Akyol 
+**/
+
 public class Deck {
     // flashcard deck to display multiple flashcards to practice phrases
     private List<Flashcard> cards = new ArrayList<>();

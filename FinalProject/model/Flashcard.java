@@ -1,5 +1,9 @@
 package model;
 
+/*
+    @author: Bilge Akyol 
+**/
+
 public class Flashcard {
     private String front;
     private String back;

@@ -7,6 +7,10 @@ import model.Language;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+/*
+    @author: Bilge Akyol 
+**/
+
 public class CSVLoader {
     public static Deck loadDeck(String filePath, Language lang) {
         Deck deck = new Deck();

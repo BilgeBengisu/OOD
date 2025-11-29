@@ -1,6 +1,10 @@
 import ui.FlashcardUI;
 import loader.CSVLoader;
 
+/*
+    @author: Bilge Akyol 
+**/
+
 public class Main {
     public static void main(String[] args) {
         new FlashcardUI().start();
