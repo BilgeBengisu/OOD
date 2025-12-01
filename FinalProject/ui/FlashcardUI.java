@@ -3,6 +3,7 @@ package ui;
 import model.*;
 import strategy.*;
 import ui.ColorTheme;
+import service.ScoreSubject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,11 +34,15 @@ public class FlashcardUI {
     private JButton showAnswerButton;
     private JButton nextButton;
     private JButton languageMenuButton;
+    private JButton correctButton;
+    private JButton incorrectButton;
     private LanguageSelectionStrategy currentStrategy; // To apply color theme
 
     private List<Flashcard> cards;
     private int currentIndex = 0;
     private boolean showingAnswer = false;
+    private ScoreSubject scoreSubject;
+    private ScorePanel scorePanel;
 
     // starts Java Swing session
     // creates the main frame and displays the language selection menu.
@@ -121,11 +126,20 @@ public class FlashcardUI {
         this.cardPanel = new JPanel();
         cardPanel.setLayout(new BorderLayout(20,20));
 
+        // create and register score observer components
+        scoreSubject = new ScoreSubject();
+        scorePanel = new ScorePanel();
+        scoreSubject.registerObserver(scorePanel);
+        cardPanel.add(scorePanel, BorderLayout.NORTH);
+
         phraseLabel = new JLabel("", SwingConstants.CENTER);
         phraseLabel.setFont(new Font("Arial", Font.BOLD, 22));
 
-        showAnswerButton = new JButton("Show Answer");
-        nextButton = new JButton("Next");
+    showAnswerButton = new JButton("Show Answer");
+    nextButton = new JButton("Next");
+    // buttons to mark whether the user got the card right/wrong
+    correctButton = new JButton("I was correct");
+    incorrectButton = new JButton("I was incorrect");
         // return to language menu
         languageMenuButton = new JButton("Return to Language Menu");
 
@@ -138,6 +152,21 @@ public class FlashcardUI {
         buttonPanel = new JPanel();
         buttonPanel.add(showAnswerButton);
         buttonPanel.add(nextButton);
+        // correct/incorrect buttons are hidden until answer is shown
+        correctButton.setVisible(false);
+        incorrectButton.setVisible(false);
+        buttonPanel.add(correctButton);
+        buttonPanel.add(incorrectButton);
+
+        // action for marking answers (records score and advances)
+        correctButton.addActionListener(e -> {
+            scoreSubject.recordAnswer(true);
+            handleNextCard(null);
+        });
+        incorrectButton.addActionListener(e -> {
+            scoreSubject.recordAnswer(false);
+            handleNextCard(null);
+        });
 
         // add phrase and buttons to the interface
         cardPanel.add(phraseLabel, BorderLayout.CENTER);
@@ -146,8 +175,8 @@ public class FlashcardUI {
 
         frame.setContentPane(cardPanel);
 
-        // apply language flag color theme
-        applyLanguageTheme(currentStrategy);
+    // apply language flag color theme
+    applyLanguageTheme(currentStrategy);
 
         frame.revalidate();
 
@@ -205,6 +234,9 @@ public class FlashcardUI {
 
         phraseLabel.setText("<html><center>" + card.getFront() + "</center></html>");
         showAnswerButton.setEnabled(true);
+        // hide correct/incorrect buttons until the answer is shown
+        if (correctButton != null) correctButton.setVisible(false);
+        if (incorrectButton != null) incorrectButton.setVisible(false);
     }
 
     // show the back of the card (translation)
@@ -212,6 +244,11 @@ public class FlashcardUI {
         Flashcard card = cards.get(currentIndex);
         phraseLabel.setText("<html><center>" + card.getBack() + "</center></html>");
         showingAnswer = true; // handle the show answer button action
+        // reveal the correct/incorrect buttons to let user record their answer
+        if (correctButton != null) correctButton.setVisible(true);
+        if (incorrectButton != null) incorrectButton.setVisible(true);
+        // disable show answer button to prevent duplicate clicks
+        showAnswerButton.setEnabled(false);
     }
 
     // next card logic

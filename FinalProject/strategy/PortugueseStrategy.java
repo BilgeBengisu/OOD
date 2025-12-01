@@ -17,10 +17,10 @@ import java.awt.Color;
  * @author Bilge Akyol
  */
 public class PortugueseStrategy implements LanguageSelectionStrategy {
-    // loads a deck of Portuguese flashcards from the CSV file.
+    // loads a deck of Portuguese flashcards with the Simple Factory pattern.
     @Override
     public Deck loadDeck(){
-        return CSVLoader.loadDeck("phrases/portuguese_phrases.csv", Language.PORTUGUESE);
+        return loader.DeckFactory.createDeck(Language.PORTUGUESE);
     }
 
     // returns the Brazilian flag-inspired color theme.

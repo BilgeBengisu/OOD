@@ -17,11 +17,10 @@ import java.awt.Color;
  * @author Bilge Akyol
  */
 public class TurkishStrategy implements LanguageSelectionStrategy {
-    // loads a deck of Turkish flashcards from the CSV file.
+    // loads a deck of Turkish flashcards with the Simple Factory pattern.
     @Override
     public Deck loadDeck() {
-        return CSVLoader.loadDeck("phrases/turkish_phrases.csv", Language.TURKISH);
-    }
+        return loader.DeckFactory.createDeck(Language.TURKISH);
 
     // returns the Turkish flag-inspired color theme.
     @Override

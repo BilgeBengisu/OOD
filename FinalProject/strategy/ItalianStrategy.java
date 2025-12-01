@@ -18,10 +18,10 @@ import java.awt.Color;
  */
 public class ItalianStrategy implements LanguageSelectionStrategy {
     
-    // loads a deck of Italian flashcards from the CSV file.
+    // loads a deck of Italian flashcards with the Simple Factory pattern.
     @Override
     public Deck loadDeck() {
-        return CSVLoader.loadDeck("phrases/italian_phrases.csv", Language.ITALIAN);
+        return loader.DeckFactory.createDeck(Language.ITALIAN);
     }
 
     // returns the Italian flag-inspired color theme. Background: green, Buttons: red, Text: white
