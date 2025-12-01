@@ -21,7 +21,7 @@ public class ItalianStrategy implements LanguageSelectionStrategy {
     // loads a deck of Italian flashcards with the Simple Factory pattern.
     @Override
     public Deck loadDeck() {
-        return loader.DeckFactory.createDeck(Language.ITALIAN);
+        return DeckFactory.createDeck(Language.ITALIAN);
     }
 
     // returns the Italian flag-inspired color theme. Background: green, Buttons: red, Text: white

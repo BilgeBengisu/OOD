@@ -20,7 +20,7 @@ public class PortugueseStrategy implements LanguageSelectionStrategy {
     // loads a deck of Portuguese flashcards with the Simple Factory pattern.
     @Override
     public Deck loadDeck(){
-        return loader.DeckFactory.createDeck(Language.PORTUGUESE);
+        return DeckFactory.createDeck(Language.PORTUGUESE);
     }
 
     // returns the Brazilian flag-inspired color theme.

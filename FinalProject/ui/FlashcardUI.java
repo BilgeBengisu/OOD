@@ -2,8 +2,9 @@ package ui;
 
 import model.*;
 import strategy.*;
+import service.SessionManager;
+import observer.DeckObserver;
 import ui.ColorTheme;
-import service.ScoreSubject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,30 +20,25 @@ import java.util.List;
  * - Flashcard display and navigation
  * - Theme customization based on selected language
  * - Interactive show/hide answer functionality
+ * - Progress display (card index / total cards)
  * 
- * The UI follows the Strategy pattern to apply language-specific color themes
- * and load corresponding flashcard decks.
+ * The UI uses the Strategy pattern for language-specific themes, SessionManager (Singleton Pattern) for flashcard states and DeckObserver for progress changes.
  * 
  * @author Bilge Akyol
  */
-public class FlashcardUI {
+public class FlashcardUI implements DeckObserver {
     private JFrame frame;
     private JPanel mainPanel;
     private JPanel cardPanel;
     private JPanel buttonPanel;
     private JLabel phraseLabel;
+    private JLabel progressLabel;  // shows current card index / total
     private JButton showAnswerButton;
     private JButton nextButton;
     private JButton languageMenuButton;
-    private JButton correctButton;
-    private JButton incorrectButton;
     private LanguageSelectionStrategy currentStrategy; // To apply color theme
 
-    private List<Flashcard> cards;
-    private int currentIndex = 0;
-    private boolean showingAnswer = false;
-    private ScoreSubject scoreSubject;
-    private ScorePanel scorePanel;
+    private SessionManager sessionManager = SessionManager.getInstance();
 
     // starts Java Swing session
     // creates the main frame and displays the language selection menu.
@@ -57,6 +53,19 @@ public class FlashcardUI {
         showLanguageMenu();
 
         frame.setVisible(true);
+    }
+
+    /**
+     * Observer trigger: called when deck progress changes
+     * Updates the progress label to reflect the current card index.
+     */
+    @Override
+    public void onProgressChanged(int currentIndex, int totalCards) {
+        SwingUtilities.invokeLater(() -> {
+            if (progressLabel != null) {
+                progressLabel.setText("Card " + currentIndex + " / " + totalCards);
+            }
+        });
     }
 
     // shows languages to practice for the user to choose
@@ -102,18 +111,20 @@ public class FlashcardUI {
     // selected strategy gets stored for theme customization throughout the session
     private void startSession(LanguageSelectionStrategy strategy) {
         Deck deck = strategy.loadDeck();
-        this.cards = deck.getCards();
         this.currentStrategy = strategy; // save the selected language strategy for color theme
 
         // error catching
-        if(cards.isEmpty()) {
+        if(deck.getCards().isEmpty()) {
             JOptionPane.showMessageDialog(frame, "No cards found for this language");
             showLanguageMenu();
             return;
         }
 
-        currentIndex = 0;
-        showingAnswer = false;
+        // use SessionManager to manage session state
+        sessionManager.setCurrentDeck(deck);
+        
+        // subscribe this UI as an observer to deck progress changes
+        deck.addObserver(this);
 
         showFlashcardScreen();
     }
@@ -126,20 +137,14 @@ public class FlashcardUI {
         this.cardPanel = new JPanel();
         cardPanel.setLayout(new BorderLayout(20,20));
 
-        // create and register score observer components
-        scoreSubject = new ScoreSubject();
-        scorePanel = new ScorePanel();
-        scoreSubject.registerObserver(scorePanel);
-        cardPanel.add(scorePanel, BorderLayout.NORTH);
-
         phraseLabel = new JLabel("", SwingConstants.CENTER);
         phraseLabel.setFont(new Font("Arial", Font.BOLD, 22));
 
-    showAnswerButton = new JButton("Show Answer");
-    nextButton = new JButton("Next");
-    // buttons to mark whether the user got the card right/wrong
-    correctButton = new JButton("I was correct");
-    incorrectButton = new JButton("I was incorrect");
+        progressLabel = new JLabel("Card 1 / " + sessionManager.getTotalCards(), SwingConstants.CENTER);
+        progressLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        showAnswerButton = new JButton("Show Answer");
+        nextButton = new JButton("Next");
         // return to language menu
         languageMenuButton = new JButton("Return to Language Menu");
 
@@ -152,31 +157,21 @@ public class FlashcardUI {
         buttonPanel = new JPanel();
         buttonPanel.add(showAnswerButton);
         buttonPanel.add(nextButton);
-        // correct/incorrect buttons are hidden until answer is shown
-        correctButton.setVisible(false);
-        incorrectButton.setVisible(false);
-        buttonPanel.add(correctButton);
-        buttonPanel.add(incorrectButton);
 
-        // action for marking answers (records score and advances)
-        correctButton.addActionListener(e -> {
-            scoreSubject.recordAnswer(true);
-            handleNextCard(null);
-        });
-        incorrectButton.addActionListener(e -> {
-            scoreSubject.recordAnswer(false);
-            handleNextCard(null);
-        });
+        // create a top panel with progress label
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(languageMenuButton, BorderLayout.WEST);
+        topPanel.add(progressLabel, BorderLayout.CENTER);
 
         // add phrase and buttons to the interface
         cardPanel.add(phraseLabel, BorderLayout.CENTER);
         cardPanel.add(buttonPanel, BorderLayout.SOUTH);
-        cardPanel.add(languageMenuButton, BorderLayout.PAGE_START);
+        cardPanel.add(topPanel, BorderLayout.PAGE_START);
 
         frame.setContentPane(cardPanel);
 
-    // apply language flag color theme
-    applyLanguageTheme(currentStrategy);
+        // apply language flag color theme
+        applyLanguageTheme(currentStrategy);
 
         frame.revalidate();
 
@@ -194,8 +189,11 @@ public class FlashcardUI {
         // Update main background
         cardPanel.setBackground(background);
 
-        // apply custom text color
+        // apply custom text color to all labels
         phraseLabel.setForeground(text);
+        if (progressLabel != null) {
+            progressLabel.setForeground(text);
+        }
 
         // Update buttons
         for (Component c : buttonPanel.getComponents()) {
@@ -229,34 +227,30 @@ public class FlashcardUI {
 
     // load the front of the flashcard (phrase)
     private void loadCard() {
-        Flashcard card = cards.get(currentIndex);
-        showingAnswer = false; // reset the answer display state
+        Flashcard card = sessionManager.getCurrentCard();
+        if (card == null) return;
+        
+        sessionManager.toggleShowingAnswer(false); // reset the answer display state
 
         phraseLabel.setText("<html><center>" + card.getFront() + "</center></html>");
         showAnswerButton.setEnabled(true);
-        // hide correct/incorrect buttons until the answer is shown
-        if (correctButton != null) correctButton.setVisible(false);
-        if (incorrectButton != null) incorrectButton.setVisible(false);
     }
 
     // show the back of the card (translation)
     private void handleShowAnswer(ActionEvent event) {
-        Flashcard card = cards.get(currentIndex);
+        Flashcard card = sessionManager.getCurrentCard();
+        if (card == null) return;
+        
         phraseLabel.setText("<html><center>" + card.getBack() + "</center></html>");
-        showingAnswer = true; // handle the show answer button action
-        // reveal the correct/incorrect buttons to let user record their answer
-        if (correctButton != null) correctButton.setVisible(true);
-        if (incorrectButton != null) incorrectButton.setVisible(true);
-        // disable show answer button to prevent duplicate clicks
-        showAnswerButton.setEnabled(false);
+        sessionManager.toggleShowingAnswer(true); // handle the show answer button action
     }
 
     // next card logic
     // advances to the next flashcard in the deck
     // shows end screen if reached the end
     private void handleNextCard(ActionEvent event) {
-        if (currentIndex < cards.size() - 1) {
-            currentIndex++;
+        if (sessionManager.getCurrentIndex() < sessionManager.getTotalCards() - 1) {
+            sessionManager.nextCard();
             loadCard();
         } else {
             showEndScreen();
