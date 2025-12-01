@@ -21,7 +21,7 @@ public final class DeckFactory {
         return switch (language) {
             case TURKISH -> CSVLoader.loadDeck("phrases/turkish_phrases.csv", language);
             case PORTUGUESE -> CSVLoader.loadDeck("phrases/portuguese_phrases.csv", language);
-            case ITALIAN -> CSVLoader.loadDeck("phrases/italian_phrases.csv", language;
+            case ITALIAN -> CSVLoader.loadDeck("phrases/italian_phrases.csv", language);
             default -> new Deck();
         };
     }
