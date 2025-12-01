@@ -16,12 +16,12 @@ public final class DeckFactory {
     private DeckFactory() {} // utility class, not meant to be instantiated
 
     public static Deck createDeck(Language language) {
-        if (lang == null) return new Deck();
+        if (language == null) return new Deck();
 
-        return switch (lang) {
-            case TURKISH -> CSVLoader.loadDeck("phrases/turkish_phrases.csv", lang);
-            case PORTUGUESE -> CSVLoader.loadDeck("phrases/portuguese_phrases.csv", lang);
-            case ITALIAN -> CSVLoader.loadDeck("phrases/italian_phrases.csv", lang);
+        return switch (language) {
+            case TURKISH -> CSVLoader.loadDeck("phrases/turkish_phrases.csv", language);
+            case PORTUGUESE -> CSVLoader.loadDeck("phrases/portuguese_phrases.csv", language);
+            case ITALIAN -> CSVLoader.loadDeck("phrases/italian_phrases.csv", language;
             default -> new Deck();
         };
     }
