@@ -6,17 +6,24 @@ import model.Language;
 import ui.ColorTheme;
 import java.awt.Color;
 
-
-/*
-    @author: Bilge Akyol 
-**/
-
+/**
+ * PortugueseStrategy.java
+ * Concrete strategy for Portuguese language flashcards.
+ * 
+ * Implements the LanguageSelectionStrategy for Portuguese language learning.
+ * Loads Portuguese phrases and applies flag-inspired color theme
+ * (yellow, green, white).
+ * 
+ * @author Bilge Akyol
+ */
 public class PortugueseStrategy implements LanguageSelectionStrategy {
+    // loads a deck of Portuguese flashcards from the CSV file.
     @Override
     public Deck loadDeck(){
         return CSVLoader.loadDeck("phrases/portuguese_phrases.csv", Language.PORTUGUESE);
     }
 
+    // returns the Brazilian flag-inspired color theme.
     @Override
     public ColorTheme getColorTheme(){
         return new ColorTheme(

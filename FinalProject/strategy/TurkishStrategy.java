@@ -6,17 +6,24 @@ import model.Language;
 import ui.ColorTheme;
 import java.awt.Color;
 
-
-/*
-    @author: Bilge Akyol 
-**/
-
+/**
+ * TurkishStrategy.java
+ * Concrete strategy for Turkish language flashcards.
+ * 
+ * Implements the LanguageSelectionStrategy for Turkish language learning.
+ * Loads Turkish phrases and applies flag-inspired color theme
+ * (white, red, black).
+ * 
+ * @author Bilge Akyol
+ */
 public class TurkishStrategy implements LanguageSelectionStrategy {
+    // loads a deck of Turkish flashcards from the CSV file.
     @Override
     public Deck loadDeck() {
         return CSVLoader.loadDeck("phrases/turkish_phrases.csv", Language.TURKISH);
     }
 
+    // returns the Turkish flag-inspired color theme.
     @Override
     public ColorTheme getColorTheme(){
         return new ColorTheme(

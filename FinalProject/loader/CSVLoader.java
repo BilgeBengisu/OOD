@@ -7,8 +7,13 @@ import model.Language;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-/*
-    @author: Bilge Akyol 
+/**
+ * CSVLoader.java
+ * CSVLoader class has two methods:
+ * loadDeck(String filePath, Language lang): Loads the csv file that was passed and return a Deck object
+ * that has multiple flashcards extracted from the CSV file
+ * parseCsvLine(String line): returns an array 
+ * @author: Bilge Akyol 
 **/
 
 public class CSVLoader {
@@ -34,6 +39,7 @@ public class CSVLoader {
                 String front = null;
                 String back = null;
 
+                // get front and back from parts array
                 if (parts.length >= 3) {
                     front = parts[0].trim();
                     back = parts[1].trim();
@@ -46,13 +52,16 @@ public class CSVLoader {
                     continue;
                 }
 
+                // add new Flashcard to the deck with phrase and translation extracted from the CSV
                 deck.addCard(new Flashcard(front, back, lang));
             }
-        } catch (Exception e) {
+
+            // log success
+            System.out.println("Loaded " + deck.getCards().size() + " cards from " + filePath);
+        } catch (Exception e) { // log error
             System.out.println("Error loading CSV: " + e.getMessage());
         }
 
-        System.out.println("Loaded " + deck.getCards().size() + " cards from " + filePath);
         return deck;
     }
 
@@ -63,6 +72,7 @@ public class CSVLoader {
         java.util.List<String> parts = new java.util.ArrayList<>();
         boolean inQuotes = false;
 
+        // iterate char by char
         for (int i = 0; i < line.length(); i++) {
             char c = line.charAt(i);
             if (c == '"') {
@@ -81,6 +91,7 @@ public class CSVLoader {
                 cur.append(c);
             }
         }
+        // add current string
         parts.add(cur.toString().trim());
         return parts.toArray(new String[0]);
     }

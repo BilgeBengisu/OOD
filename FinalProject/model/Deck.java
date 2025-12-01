@@ -3,8 +3,10 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 
-/*
-    @author: Bilge Akyol 
+/**
+* Deck.java
+* Represents a deck of flashcards. The deck gets constructed by the CSV Loader class when a language csv file is loaded in.
+* @author: Bilge Akyol 
 **/
 
 public class Deck {
