@@ -3,6 +3,10 @@ package observer;
 /**
  * DeckObserver.java
  * Observer interface for tracking flashcard progress for displaying.
+ * 
+ * Observer
+ * Subject: Deck
+ * Subscriber: SessionController
  *
  * Implementing observers are notified when the user navigates through flashcards
  * in a session (e.g., moves to the next card or shuffles the deck).

@@ -10,6 +10,7 @@ import observer.DeckObserver;
 * Represents a deck of flashcards. The deck gets constructed by the CSV Loader class when a language csv file is loaded in.
 *
 * Deck class is also the subject of the Observer pattern to keep progress of the flashcards practiced.
+* 
 * @author: Bilge Akyol 
 **/
 
@@ -24,6 +25,11 @@ public class Deck {
         cards.add(card);
     }
 
+    /*
+    *
+    * Observer Functionality
+    *
+    **/
     // add observer to the deck
     public void addObserver(DeckObserver obs) {
         observers.add(obs);
@@ -41,6 +47,7 @@ public class Deck {
             obs.onProgressChanged(currentIndex + 1, cards.size());
         }
     }
+
 
     // shuffle cards and set the current index to 0
     // then notify observers

@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
  * UI controller handling session actions
  * Wires UI events to session manager and deck
  * Updates UI views using deckObserver
+ * 
  */
 public class SessionController implements DeckObserver {
     private final SessionManager sessionManager = SessionManager.getInstance();
@@ -42,6 +43,7 @@ public class SessionController implements DeckObserver {
         }
 
         sessionManager.setCurrentDeck(deck);
+        // add SessionController as a subscriber
         deck.addObserver(this);
 
         // create and wire view
@@ -73,7 +75,7 @@ public class SessionController implements DeckObserver {
         sessionManager.toggleShowingAnswer(false);
         cardView.displayFront(card);
         cardView.getShowAnswerButton().setEnabled(true);
-        cardView.updateProgress(sessionManager.getCurrentIndex() + 1, sessionManager.getTotalCards());
+        // removed updateProgress here because now it is handled by the observer Deck class.
     }
 
     private void handleShowAnswer(ActionEvent event) {
