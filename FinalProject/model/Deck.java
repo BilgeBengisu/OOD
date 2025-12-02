@@ -63,6 +63,17 @@ public class Deck {
         return cards.get(currentIndex);
     }
 
+    // returns the current 0-based index within the deck
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    // reset current index to start of deck and notify observers
+    public void reset() {
+        currentIndex = 0;
+        notifyObservers();
+    }
+
     public List<Flashcard> getCards() {
         return cards;
     }

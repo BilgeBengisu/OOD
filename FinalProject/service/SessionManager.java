@@ -8,7 +8,6 @@ import model.Flashcard;
  * Singleton that manages the current flashcard learning session.
  *
  * Encapsulates session state (current deck, card index, front/back display)
- * and provides a clean API for UI to navigate and query the session.
  * This decouples UI logic from card management and allows the Deck class
  * to focus on being an Observer subject.
  *
@@ -17,7 +16,6 @@ import model.Flashcard;
 public class SessionManager {
     private static SessionManager instance;
     private Deck currentDeck;
-    private int currentIndex = 0;
     private boolean showingAnswer = false;
 
     // private constructor for Singleton
@@ -36,7 +34,9 @@ public class SessionManager {
     // resets index and answer state
     public void setCurrentDeck(Deck deck) {
         this.currentDeck = deck;
-        this.currentIndex = 0;
+        if (this.currentDeck != null) {
+            this.currentDeck.reset();
+        }
         this.showingAnswer = false;
     }
 
@@ -45,7 +45,7 @@ public class SessionManager {
         if (currentDeck == null || currentDeck.getCards().isEmpty()) {
             return null;
         }
-        return currentDeck.getCards().get(currentIndex);
+        return currentDeck.getCurrentCard();
     }
 
     // move to the next card
@@ -53,7 +53,6 @@ public class SessionManager {
     public void nextCard() {
         if (currentDeck != null) {
             currentDeck.nextCard();
-            currentIndex++;
             this.showingAnswer = false;
         }
     }
@@ -62,7 +61,6 @@ public class SessionManager {
     public void shuffleDeck() {
         if (currentDeck != null) {
             currentDeck.shuffle();
-            currentIndex = 0;
             this.showingAnswer = false;
         }
     }
@@ -82,15 +80,14 @@ public class SessionManager {
         return currentDeck;
     }
 
-    // get the 0-based current index
+    // get current index
     public int getCurrentIndex() {
-        return currentIndex;
+        return currentDeck == null ? 0 : currentDeck.getCurrentIndex();
     }
 
     // reset the session (for starting a new one)
     public void reset() {
         currentDeck = null;
-        currentIndex = 0;
         showingAnswer = false;
     }
 

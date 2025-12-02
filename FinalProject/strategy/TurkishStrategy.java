@@ -3,6 +3,7 @@ package strategy;
 import loader.CSVLoader;
 import factory.DeckFactory;
 import model.Deck;
+import factory.DeckFactory;
 import model.Language;
 import ui.ColorTheme;
 import java.awt.Color;
