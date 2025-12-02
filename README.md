@@ -1,7 +1,8 @@
 ### Object Oriented Design Final Project
 This Java Swing application
 
-## Project Demo and Gif:
+## Project Gif:
+![ood_gif](https://github.com/user-attachments/assets/1930effa-e036-46b2-8f69-488a86c66698)
 
 
 ## OOD Concepts used:
