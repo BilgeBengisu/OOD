@@ -5,6 +5,7 @@ import model.Flashcard;
 import observer.DeckObserver;
 import strategy.LanguageSelectionStrategy;
 import ui.helpers.*;
+import factory.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +34,8 @@ public class SessionController implements DeckObserver {
 
     public void startSession(LanguageSelectionStrategy strategy) {
         // load deck via strategy
-        Deck deck = strategy.loadDeck();
+        DeckFactory deckFactory = strategy.getDeckFactory();
+        Deck deck = deckFactory.createDeck();
         if (deck.getCards().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No cards found for this language");
             return;

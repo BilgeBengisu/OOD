@@ -2,6 +2,7 @@ package strategy;
 
 import model.Deck;
 import ui.ColorTheme;
+import factory.*;
 
 /**
  * LanguageSelectionStrategy.java
@@ -14,7 +15,7 @@ import ui.ColorTheme;
 public interface LanguageSelectionStrategy {
     // Loads and returns a deck of flashcards for the language strategy. 
     // @return A Deck object populated with language-specific flashcards
-    Deck loadDeck();
+    DeckFactory getDeckFactory();
 
     // Returns the color theme appropriate for the implemented language.
     // @return A ColorTheme object with background, button, and text colors

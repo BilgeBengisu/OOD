@@ -1,9 +1,8 @@
 package strategy;
 
 import loader.CSVLoader;
-import factory.DeckFactory;
 import model.Deck;
-import factory.DeckFactory;
+import factory.*;
 import model.Language;
 import ui.ColorTheme;
 import java.awt.Color;
@@ -21,8 +20,8 @@ import java.awt.Color;
 public class TurkishStrategy implements LanguageSelectionStrategy {
     // loads a deck of Turkish flashcards with the Simple Factory pattern.
     @Override
-    public Deck loadDeck() {
-        return DeckFactory.createDeck(Language.TURKISH);
+    public DeckFactory getDeckFactory() {
+        return new TurkishDeckFactory();
     }
 
     // returns the Turkish flag-inspired color theme.

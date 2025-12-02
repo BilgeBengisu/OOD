@@ -2,7 +2,7 @@ package strategy;
 
 import loader.CSVLoader;
 import model.Deck;
-import factory.DeckFactory;
+import factory.*;
 import model.Language;
 import ui.ColorTheme;
 import java.awt.Color;
@@ -21,8 +21,8 @@ public class ItalianStrategy implements LanguageSelectionStrategy {
     
     // loads a deck of Italian flashcards with the Simple Factory pattern.
     @Override
-    public Deck loadDeck() {
-        return DeckFactory.createDeck(Language.ITALIAN);
+    public DeckFactory getDeckFactory() {
+        return new ItalianDeckFactory();
     }
 
     // returns the Italian flag-inspired color theme. Background: green, Buttons: red, Text: white

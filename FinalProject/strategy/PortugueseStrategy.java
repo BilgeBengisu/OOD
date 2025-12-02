@@ -2,7 +2,7 @@ package strategy;
 
 import loader.CSVLoader;
 import model.Deck;
-import factory.DeckFactory;
+import factory.*;
 import model.Language;
 import ui.ColorTheme;
 import java.awt.Color;
@@ -20,8 +20,8 @@ import java.awt.Color;
 public class PortugueseStrategy implements LanguageSelectionStrategy {
     // loads a deck of Portuguese flashcards with the Simple Factory pattern.
     @Override
-    public Deck loadDeck(){
-        return DeckFactory.createDeck(Language.PORTUGUESE);
+    public DeckFactory getDeckFactory() {
+        return new PortugueseDeckFactory();
     }
 
     // returns the Brazilian flag-inspired color theme.
