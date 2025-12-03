@@ -6,6 +6,10 @@ import model.*;
 public class ItalianDeckFactory implements DeckFactory {
     @Override
     public Deck createDeck() {
-        return CSVLoader.loadDeck("phrases/italian_phrases.csv", Language.ITALIAN);
+        Deck deck = new Deck();
+        for (Flashcard card : CSVLoader.loadFlashcards("phrases/italian_phrases.csv", Language.ITALIAN)) {
+            deck.addCard(card);
+        }
+        return deck;
     }
 }

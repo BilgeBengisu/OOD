@@ -3,6 +3,7 @@ package observer;
 /**
  * DeckObserver.java
  * Observer interface for tracking flashcard progress for displaying.
+ * Important point: The observer interface defines what observers get notified about, not how notifications happen
  * 
  * Observer
  * Subject: Deck

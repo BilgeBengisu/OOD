@@ -16,9 +16,16 @@ import java.io.FileReader;
  * @author: Bilge Akyol 
 **/
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class CSVLoader {
-    public static Deck loadDeck(String filePath, Language lang) {
-        Deck deck = new Deck();
+    /**
+     * Loads flashcards from a CSV file and returns a list of Flashcard objects.
+     * This method does NOT create a Deck; it only loads data. The responsiblity for creating deck is on Factory pattern
+     */
+    public static List<Flashcard> loadFlashcards(String filePath, Language lang) {
+        List<Flashcard> flashcards = new ArrayList<>();
         System.out.println("Loading CSV from: " + filePath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -52,24 +59,24 @@ public class CSVLoader {
                     continue;
                 }
 
-                // add new Flashcard to the deck with phrase and translation extracted from the CSV
-                deck.addCard(new Flashcard(front, back, lang));
+                // add new Flashcard to the list
+                flashcards.add(new Flashcard(front, back, lang));
             }
 
             // log success
-            System.out.println("Loaded " + deck.getCards().size() + " cards from " + filePath);
+            System.out.println("Loaded " + flashcards.size() + " cards from " + filePath);
         } catch (Exception e) { // log error
             System.out.println("Error loading CSV: " + e.getMessage());
         }
 
-        return deck;
+        return flashcards;
     }
 
     // Simple CSV parser that handles quoted fields with commas
     private static String[] parseCsvLine(String line) {
         if (line == null) return new String[0];
         StringBuilder cur = new StringBuilder();
-        java.util.List<String> parts = new java.util.ArrayList<>();
+        List<String> parts = new ArrayList<>();
         boolean inQuotes = false;
 
         // iterate char by char
