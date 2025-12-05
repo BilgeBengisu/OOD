@@ -18,9 +18,9 @@ public class Flashcard {
     /**
      * Constructs a Flashcard with the specified front and back content.
      * 
-     * @param front The text displayed on the front of the flashcard (original language phrase)
-     * @param back The text displayed on the back of the flashcard (translation)
-     * @param language The Language enum value associated with this flashcard
+     * front The text displayed on the front of the flashcard (original language phrase)
+     * back The text displayed on the back of the flashcard (translation)
+     * language The Language enum value associated with this flashcard
      */
     public Flashcard(String front, String back, Language language) {
         this.front = front;
